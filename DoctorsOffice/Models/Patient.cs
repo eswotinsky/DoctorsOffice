@@ -15,5 +15,15 @@ namespace DoctorsOffice.Models
       _name = name;
       _birthdate = birthdate;
     }
+
+    public string GetName()
+    {
+      return _name;
+    }
+
+    public DateTime GetBirthdate()
+    {
+      return _birthdate;
+    }
   }
 }

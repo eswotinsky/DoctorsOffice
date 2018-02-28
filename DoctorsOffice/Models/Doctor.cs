@@ -17,5 +17,20 @@ namespace DoctorsOffice.Models
       _age = age;
       _specialty = specialty;
     }
+
+    public string GetName()
+    {
+      return _name;
+    }
+
+    public int GetAge()
+    {
+      return _age;
+    }
+
+    public string GetSpecialty()
+    {
+      return _specialty;
+    }
   }
 }
