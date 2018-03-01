@@ -75,5 +75,28 @@ namespace DoctorsOffice.Models
 
             return allDoctors;
         }
+
+        public List<Patient> GetPatients()
+        {
+            List<Patient> myPatients = new List<Patient>{};
+
+            //get patients from database
+
+            return myPatients;
+        }
+
+        public static Doctor Find(int id)
+        {
+            //get doctor from database
+
+            Doctor myDoctor = new Doctor("Bob", 50, "Pediatrics"); //update
+
+            return myDoctor;
+        }
+
+        public static void DeleteAll()
+        {
+            //delete all from database
+        }
     }
 }

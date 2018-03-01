@@ -8,13 +8,17 @@ namespace DoctorsOffice.Models
     public class Patient
     {
         private int _id = 0;
-        private string _name;
+        private string _firstName;
+        private string _lastName;
         private DateTime _birthdate;
+        private int _doctorId;
 
-        public Patient(string name, DateTime birthdate)
+        public Patient(string firstName, string lastName, DateTime birthdate, int doctorId = 0)
         {
-            _name = name;
+            _firstName = firstName;
+            _lastName = lastName;
             _birthdate = birthdate;
+            _doctorId = doctorId;
         }
 
         public override bool Equals(System.Object otherPatient)
@@ -40,9 +44,14 @@ namespace DoctorsOffice.Models
             return _id;
         }
 
-        public string GetName()
+        public string GetFirstName()
         {
-            return _name;
+            return _firstName;
+        }
+
+        public string GetLastName()
+        {
+            return _lastName;
         }
 
         public DateTime GetBirthdate()
@@ -60,6 +69,15 @@ namespace DoctorsOffice.Models
             //delete from database
         }
 
+        public static Patient Find(int id)
+        {
+            //find patient from database
+
+            Patient myPatient = new Patient("Sarah", "Clark", new DateTime(2000, 1, 1)); //firstName, lastName, birthdate
+
+            return myPatient;
+        }
+
         public static List<Patient> GetAll()
         {
             List<Patient> allPatients = new List<Patient>{};
@@ -67,6 +85,11 @@ namespace DoctorsOffice.Models
             //get all from database
 
             return allPatients;
+        }
+
+        public static void DeleteAll()
+        {
+            //delete all patients from database
         }
     }
 }
