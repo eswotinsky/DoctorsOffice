@@ -61,7 +61,40 @@ namespace DoctorsOffice.Models
 
         public void Save()
         {
-            //save to database
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO patients (firstname, lastname, birthdate, doctor_id) VALUES (@firstName, @lastName, @birthdate, @doctorId);";
+
+            MySqlParameter firstName = new MySqlParameter();
+            firstName.ParameterName = "@firstName";
+            firstName.Value = this._firstName;
+            cmd.Parameters.Add(firstName);
+
+            MySqlParameter lastName = new MySqlParameter();
+            lastName.ParameterName = "@lastName";
+            lastName.Value = this._lastName;
+            cmd.Parameters.Add(lastName);
+
+            MySqlParameter birthdate = new MySqlParameter();
+            birthdate.ParameterName = "@birthdate";
+            birthdate.Value = this._birthdate;
+            cmd.Parameters.Add(birthdate);
+
+            MySqlParameter doctorId = new MySqlParameter();
+            doctorId.ParameterName = "@doctorId";
+            doctorId.Value = this._doctorId;
+            cmd.Parameters.Add(doctorId);
+
+            cmd.ExecuteNonQuery();
+            _id = (int) cmd.LastInsertedId;
+            conn.Close();
+
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
         }
 
         public void Delete()
@@ -89,7 +122,19 @@ namespace DoctorsOffice.Models
 
         public static void DeleteAll()
         {
-            //delete all patients from database
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM patients;";
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
         }
     }
 }

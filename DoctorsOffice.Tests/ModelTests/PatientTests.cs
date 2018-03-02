@@ -10,7 +10,7 @@ namespace DoctorsOffice.Tests
     {
         public PatientTests()
         {
-            DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=doctorsoffice;";
+            DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=doctorsoffice_tests;";
         }
 
         public void Dispose()
